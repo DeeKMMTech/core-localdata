@@ -1,10 +1,9 @@
 import org.jetbrains.kotlin.gradle.targets.js.dsl.ExperimentalWasmDsl
-import org.jetbrains.kotlin.gradle.targets.js.webpack.KotlinWebpackConfig
 
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidLibrary)
-
+    alias(libs.plugins.kotlinSerialization)
 }
 
 
@@ -19,7 +18,7 @@ kotlin {
         }
     }
 
-    jvm()
+//    jvm()
 
     listOf(
         iosX64(),
@@ -31,13 +30,14 @@ kotlin {
         commonMain.dependencies {
             implementation(libs.kotlinx.coroutines.core)
             implementation(libs.koin.core)
+            implementation(libs.ktor.serialization.kotlinx.json)
         }
     }
 }
 
 
 android {
-    namespace = "com.dee.themovie.shared"
+    namespace = "com.dee.shared.localdata"
     compileSdk = libs.versions.android.compileSdk.get().toInt()
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17

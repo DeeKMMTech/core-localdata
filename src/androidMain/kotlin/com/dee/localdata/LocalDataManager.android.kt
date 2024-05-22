@@ -40,5 +40,4 @@ actual class LocalDataManager(private val encryptedSharePreference: SharedPrefer
     actual fun getLong(key: String): Long {
         return encryptedSharePreference.getLong(key, 0L)
     }
-
 }
